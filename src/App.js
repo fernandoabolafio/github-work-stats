@@ -1,11 +1,12 @@
 import React from 'react';
-
 import App from 'grommet/components/App';
 import Title from 'grommet/components/Title';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
-import TextInput from 'grommet/components/TextInput';
+import SearchInput from 'grommet/components/SearchInput';
 import * as gith from './services/github';
+import Routes from './routes';
+
 
 const aggregate = (events) => events
   .reduce((acc, event) => 
@@ -55,12 +56,16 @@ class GWS extends React.Component {
       <p>Get github work stats by username</p>
       <Form onSubmit={this.handleSearch}>
         <FormField label={"username"} >
-          <TextInput onDOMChange={(e) => this.setState({ username: e.target.value })} />
+          <SearchInput onDOMChange={(e) => this.setState({ username: e.target.value })} />
         </FormField>
+        <p>{JSON.stringify((this.state.userStatsRaw), null, 2)}</p>
         <p>{JSON.stringify((this.state.userStats), null, 2)}</p>
       </Form>
+      <Routes />
     </App>
     )
   }
 }
+
+
 export default GWS;
