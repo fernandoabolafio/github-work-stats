@@ -54,13 +54,6 @@ class GWS extends React.Component {
       <App>
       <Title>Github work stats</Title>
       <p>Get github work stats by username</p>
-      <Form onSubmit={this.handleSearch}>
-        <FormField label={"username"} >
-          <SearchInput onDOMChange={(e) => this.setState({ username: e.target.value })} />
-        </FormField>
-        <p>{JSON.stringify((this.state.userStatsRaw), null, 2)}</p>
-        <p>{JSON.stringify((this.state.userStats), null, 2)}</p>
-      </Form>
       <Routes />
     </App>
     )

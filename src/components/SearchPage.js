@@ -1,7 +1,11 @@
 import React from 'react';
+import Box from 'grommet/components/Box';
+import SearchForm from './SearchForm';  
 
 const SearchPage = () => (
-    <div>im a search page</div>
+    <Box>
+        <SearchForm />
+    </Box>
 );
 
 export default SearchPage;
