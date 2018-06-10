@@ -7,7 +7,7 @@ describe("test data handler service", () => {
             { a: "1", d: "any"},
             { d: "hey" }
         ];
-        expect(dh.aggregateBy(data, "a")).toEqual(
+        expect(dh.aggregateBy("a")(data)).toEqual(
             {
                 1: [
                     data[0],
