@@ -4,7 +4,8 @@
 
 This app is an integration of [create-react-app]() and [grommet](http://grommet.io/docs/).
 
-## Initial road map
+## Contributing
+Any contribution is welcome. Check the existent issues or create new ones to start working on.
 
 ## Development 
 - Clone this repo into your machine
