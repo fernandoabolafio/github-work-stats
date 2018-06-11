@@ -4,11 +4,12 @@ import Spinning from 'grommet/components/icons/Spinning';
 import Box from 'grommet/components/Box';
 import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
+import { PacmanLoader } from 'react-spinners';
 
 class Stats extends React.Component {
     renderListOfEvents = (events) =>
-      <List justify='between' separator='horizontal'>
-          {events.map(ev => <ListItem>
+      <List separator='horizontal'>
+          {events.map(ev => <ListItem justify='between' >
             <span>{ev.name}</span>
             <span className="secondary">{ev.count}</span>
           </ListItem>)}
@@ -17,8 +18,12 @@ class Stats extends React.Component {
     render() {
         const { userEvents, isLoading } = this.props;
         return (
-            <Box size="large">
-                {isLoading ? <Spinning /> : this.renderListOfEvents(userEvents)}
+            <Box size="large" >
+                {isLoading ?
+                    <Box align="center"> 
+                        <PacmanLoader color="#00CCEB" />
+                    </Box>
+                    : this.renderListOfEvents(userEvents)}
             </Box>
         );
     }

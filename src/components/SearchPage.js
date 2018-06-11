@@ -4,7 +4,7 @@ import SearchForm from './SearchForm';
 import Stats from './Stats';
 
 const SearchPage = () => (
-    <Box>
+    <Box align="center">
         <SearchForm />
         <Stats />
     </Box>
