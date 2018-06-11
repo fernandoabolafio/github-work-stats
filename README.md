@@ -1,4 +1,4 @@
-# Github Work States
+# Github Work Stats
 
 ### See your github work stats on a better way
 
