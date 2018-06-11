@@ -4,7 +4,6 @@ import Spinning from 'grommet/components/icons/Spinning';
 import Box from 'grommet/components/Box';
 import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
-import { PacmanLoader } from 'react-spinners';
 
 class Stats extends React.Component {
     renderListOfEvents = (events) =>
@@ -16,14 +15,10 @@ class Stats extends React.Component {
       </List>
         
     render() {
-        const { userEvents, isLoading } = this.props;
+        const { userEvents } = this.props;
         return (
             <Box size="large" >
-                {isLoading ?
-                    <Box align="center"> 
-                        <PacmanLoader color="#00CCEB" />
-                    </Box>
-                    : this.renderListOfEvents(userEvents)}
+                {this.renderListOfEvents(userEvents)}
             </Box>
         );
     }

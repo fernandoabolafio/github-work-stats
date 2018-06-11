@@ -1,0 +1,1 @@
+export const orgFilters = state => state.app.orgFilters;
