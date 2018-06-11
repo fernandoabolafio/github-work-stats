@@ -14,3 +14,7 @@ export const userEventsAggregateByType = state => {
     const data = dh.resumeAggregate(dh.aggregateBy("type")(dh.toArray(userEvents)));
     return data;
 }
+export const userEventsAggregateByOrg = state => {
+    const userEvents = userEventsResponse(state) || [];
+    const data = dh.resumeAggregate(dh.aggregateBy("type")(dh.toArray(userEvents)));
+}

@@ -19,4 +19,20 @@ describe("test data handler service", () => {
             }
         );
     })
+
+    it("aggregates deeply by an array of nested keys", () => {
+        const data = [
+            { a: { b: "1", c: { d: "2" } } },
+            { a: { b: "1", c: { d: "2" } } },
+            { a: { b: "2", c: { d: "2" } } },
+            { a: { b: "3", c: { d: "2" } } }
+        ];
+        expect(dh.aggregateByDeepKey(["a", "b"])(data)).toEqual(
+            {
+                1: [data[0], data[1]],
+                2: [data[2]],
+                3: [data[3]]
+            }
+        );
+    })
 })

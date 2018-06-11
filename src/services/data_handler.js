@@ -1,3 +1,4 @@
+import get from 'lodash/fp/get';
 
 export const aggregateBy = key => items => 
     items.reduce((acc, item) => {
@@ -10,6 +11,21 @@ export const aggregateBy = key => items =>
         }
         return acc;
     }, {});
+
+
+export const aggregateByDeepKey = keys => items => 
+    items.reduce((acc, item) => {
+        const value = get(keys, item);
+        if(!value)
+            return acc;
+        if(!acc[value]) {
+            acc[value] = [item];
+        } else {
+            acc[value].push(item);
+        }
+        return acc;
+    }, {})
+
 
 export const toArray = obj => 
     Object.keys(obj).map(key => obj[key]);
