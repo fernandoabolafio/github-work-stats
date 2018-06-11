@@ -6,8 +6,8 @@ export const onFetchUserEvents = (username) =>
         console.log('got here')
         dispatch(act.REQUEST_USER_EVENTS({username}))
         return gith.getUserEvents(username)
-        .then(response => 
-            dispatch(act.RECEIVE_USER_EVENTS({ ...response.body }))
+        .then(events => 
+            dispatch(act.RECEIVE_USER_EVENTS(events))
         );
     }
     
