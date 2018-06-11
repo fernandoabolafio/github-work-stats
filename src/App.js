@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-dates/initialize';
 import App from 'grommet/components/App';
 import Title from 'grommet/components/Title';
 import Form from 'grommet/components/Form';

@@ -9,6 +9,7 @@ import { PacmanLoader } from 'react-spinners';
 const SearchPage = ({ isLoading, userEvents }) => (
     <Box align="center">
         <SearchForm />
+        <FilterForm key="filter-form" />
         {
             isLoading ? 
             <Box align="center" size="large" style={{ paddingTop: "60px" }}>
@@ -17,7 +18,6 @@ const SearchPage = ({ isLoading, userEvents }) => (
                 : 
                 userEvents ?
                 [
-                    <FilterForm key="filter-form" />,
                     <Stats key="stats" />
                 ] : null
         }
