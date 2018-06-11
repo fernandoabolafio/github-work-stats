@@ -3,7 +3,6 @@ import act from './methods';
 
 export const onFetchUserEvents = (username) => 
     (dispatch) => {
-        console.log('got here')
         dispatch(act.REQUEST_USER_EVENTS({username}))
         return gith.getUserEvents(username)
         .then(events => 
