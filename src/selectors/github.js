@@ -21,7 +21,7 @@ export const userEventsAggregateByType = state => {
           return activeOrgFilters.includes(orgValue);
         })
         : dh.toArray(userEvents);
-    
+
     const data = dh.resumeAggregate(dh.aggregateBy("type")(filteredEvents));
     return data;
 }

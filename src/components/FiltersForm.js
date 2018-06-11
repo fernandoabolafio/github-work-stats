@@ -7,16 +7,19 @@ import Label from 'grommet/components/Label';
 class FiltersForm extends React.Component {
     renderOrgsFilter = (userEventsByOrg) => (
         <Box
-            direction="row" 
-            align="center" 
-        >
-            {userEventsByOrg.map(usEv => 
-                <CheckBox 
-                    label={usEv.name}
-                    checked={this.props.orgFilters[usEv.name]}
-                    onChange={() => this.props.toggleOrgFilter(usEv.name)}
-                />
-            )}
+            size="large"
+            align="left" 
+        >   
+            <Label size="small" margin="small">Organizations:</Label>
+            <Box direction="row" size="large">
+                {userEventsByOrg.map(usEv => 
+                    <CheckBox 
+                        label={usEv.name}
+                        checked={this.props.orgFilters[usEv.name]}
+                        onChange={() => this.props.toggleOrgFilter(usEv.name)}
+                    />
+                )}
+            </Box>
         </Box>
     )
     render() {

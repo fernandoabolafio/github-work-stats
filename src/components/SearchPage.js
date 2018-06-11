@@ -11,7 +11,9 @@ const SearchPage = ({ isLoading, userEvents }) => (
         <SearchForm />
         {
             isLoading ? 
+            <Box align="center" size="large" style={{ paddingTop: "60px" }}>
                 <PacmanLoader color="#00CCEB" />
+            </Box>
                 : 
                 userEvents ?
                 [
