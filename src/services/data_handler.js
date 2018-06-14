@@ -26,6 +26,19 @@ export const aggregateByDeepKey = keys => items =>
         return acc;
     }, {})
 
+export const createBasicFilter = (keys, validValues) => items => 
+    validValues && validValues.length > 0 ?
+        items.filter(item => 
+            validValues.includes(get(keys, item))) :
+        items;
+
+export const createCustomFilter = (func, cond) => items => 
+    cond ? items.filter(func) : items;
+
+export const applyFilters = (filters) => items => 
+    filters.reduce((filteredValues, filter) => 
+        filter(filteredValues), items)
+
 
 export const toArray = obj => 
     Object.keys(obj).map(key => obj[key]);
@@ -34,4 +47,11 @@ export const resumeAggregate = agg =>
     Object.keys(agg).map(type => ({
         name: type,
         count: agg[type].length
+    }));
+
+export const resumeAggregateWithItems = agg => 
+    Object.keys(agg).map(type => ({
+        name: type,
+        count: agg[type].length,
+        items: agg[type]
     }));
