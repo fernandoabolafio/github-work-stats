@@ -39,3 +39,9 @@ export const userEventsAggregateByOrg = state => {
     const data = dh.resumeAggregate(dh.aggregateByDeepKey(["org", "login"])(dh.toArray(userEvents)));
     return data;
 }
+
+export const userEventsAggregateByRepo = state => {
+    const userEvents = userEventsResponse(state) || [];
+    const data = dh.resumeAggregate(dh.aggregateByDeepKey(["repo", "name"])(dh.toArray(userEvents)));
+    return data;
+}

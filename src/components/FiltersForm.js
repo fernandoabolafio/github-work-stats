@@ -1,5 +1,6 @@
 import React from 'react';
 import connector from '../connectors/filters';
+import Columns from 'grommet/components/Columns';
 import Box from 'grommet/components/Box';
 import CheckBox from 'grommet/components/CheckBox';
 import Label from 'grommet/components/Label';
@@ -10,26 +11,41 @@ class FiltersForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          startDate: null,
-          endDate: null,
-          focusedInput: null,
+            startDate: null,
+            endDate: null,
+            focusedInput: null,
         };
-      }
-    renderOrgsFilter = (userEventsByOrg) => (
-        <Box
-            size="large"
-            align="left" 
-        >   
+    }
+    renderOrgsFilter = () => (
+        <Box>
             <Label size="small" margin="small">Organizations:</Label>
-            <Box direction="row" size="large">
-                {userEventsByOrg.map(usEv => 
-                    <CheckBox 
-                        label={usEv.name}
-                        checked={this.props.orgFilters[usEv.name]}
-                        onChange={() => this.props.toggleOrgFilter(usEv.name)}
-                    />
+            <Columns>
+                {this.props.userEventsByOrg.map(usEv =>
+                    <Box>
+                        <CheckBox
+                            label={usEv.name}
+                            checked={this.props.orgFilters[usEv.name]}
+                            onChange={() => this.props.toggleOrgFilter(usEv.name)}
+                        />
+                    </Box>
                 )}
-            </Box>
+            </Columns>
+        </Box>
+    )
+    renderRepoFilter = () => (
+        <Box>
+            <Label size="small" margin="small">Repositories:</Label>
+            <Columns>
+                {this.props.userEventsByRepo.map(usEv =>
+                    <Box>
+                        <CheckBox
+                            label={usEv.name}
+                            checked={this.props.repoFilters[usEv.name]}
+                            onChange={() => this.props.toggleRepoFilter(usEv.name)}
+                        />
+                    </Box>
+                )}
+            </Columns>
         </Box>
     )
     renderDatePickerFilter = () => {
@@ -39,7 +55,7 @@ class FiltersForm extends React.Component {
         return (
             <Box
                 size="large"
-                align="left" 
+                align="left"
             >
                 <Label size="small" margin="small">Date Range:</Label>
                 <DateRangePicker
@@ -52,7 +68,7 @@ class FiltersForm extends React.Component {
                     focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                     onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                     noBorder
-                    isOutsideRange={d => { 
+                    isOutsideRange={d => {
                         return d > maxDate || d < minDate;
                     }}
                 />
@@ -60,11 +76,11 @@ class FiltersForm extends React.Component {
         )
     }
     render() {
-        const { userEventsByOrg } = this.props;
         return (
             <Box align="left" size="large" pad="medium" style={{ paddingTop: "0px" }}>
                 <Label>Filters:</Label>
-                {this.renderOrgsFilter(userEventsByOrg)}
+                {this.renderOrgsFilter()}
+                {this.renderRepoFilter()}
                 {this.renderDatePickerFilter()}
             </Box>
         );
