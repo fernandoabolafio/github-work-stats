@@ -43,6 +43,7 @@ class FiltersForm extends React.Component {
             >
                 <Label size="small" margin="small">Date Range:</Label>
                 <DateRangePicker
+                    showClearDates
                     startDate={startDate} // momentPropTypes.momentObj or null,
                     startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                     endDate={endDate} // momentPropTypes.momentObj or null,
