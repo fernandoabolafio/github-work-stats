@@ -31,10 +31,10 @@ export const userEventsFiltered = state => {
     );
     const filters = dh.applyFilters([filterByOrg, filterByRepo, filterByDate]);
     const data = filters(userEvents);
-    return data;;
+    return data;
 }
 export const userEventsAggregateByType = state =>
-    dh.resumeAggregate(dh.aggregateBy("type")(userEventsFiltered(state)));
+    dh.resumeAggregateWithItems(dh.aggregateBy("type")(userEventsFiltered(state)));
 
 export const userEventsAggregateByOrg = state => {
     const userEvents = userEventsResponse(state) || [];
@@ -44,6 +44,6 @@ export const userEventsAggregateByOrg = state => {
 
 export const userEventsAggregateByRepo = state => {
     const userEvents = userEventsResponse(state) || [];
-    const data = dh.resumeAggregate(dh.aggregateByDeepKey(["repo", "name"])(dh.toArray(userEvents)));
+    const data = dh.resumeAggregateWithItems(dh.aggregateByDeepKey(["repo", "name"])(dh.toArray(userEvents)));
     return data;
 }

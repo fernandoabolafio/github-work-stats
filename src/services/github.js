@@ -1,4 +1,6 @@
 import request from 'superagent';
+import MOCK_EVENTS from '../../mocks/user_events.json';
+
 const GITHUB_API_URL = "https://api.github.com";
 
 export const paths = {
@@ -12,13 +14,14 @@ export const getUserEvents = (username) => {
         request.get(paths.getUserEventsUrl(username, 3))
     ]
     return new Promise((resolve, reject) => {
-        Promise.all(promisses).then((responses) => {
-            const data = [].concat.apply([],responses.map(r => r.body));
-            resolve(data);
-        }).catch(err => {
-            console.log(err);
-            reject(err);
-        });
+        resolve(MOCK_EVENTS);
+        // Promise.all(promisses).then((responses) => {
+        //     const data = [].concat.apply([],responses.map(r => r.body));
+        //     resolve(data);
+        // }).catch(err => {
+        //     console.log(err);
+        //     reject(err);
+        // });
     })
 }
     

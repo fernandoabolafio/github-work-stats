@@ -1,4 +1,6 @@
 import get from 'lodash/fp/get';
+import moment from 'moment';
+import * as ghhelp from './github_helpers';
 
 export const aggregateBy = key => items => 
     items.reduce((acc, item) => {
@@ -53,5 +55,5 @@ export const resumeAggregateWithItems = agg =>
     Object.keys(agg).map(type => ({
         name: type,
         count: agg[type].length,
-        items: agg[type]
+        items: agg[type].map(ev => ghhelp.summarizeEvent(ev)),
     }));
