@@ -7,6 +7,8 @@ export const onFetchUserEvents = (username) =>
         return gith.getUserEvents(username)
         .then(events => 
             dispatch(act.RECEIVE_USER_EVENTS(events))
-        );
+        ).catch(err => {
+            dispatch(act.RECEIVE_USER_EVENTS(null, err.response));
+        });
     }
     

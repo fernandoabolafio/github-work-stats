@@ -5,8 +5,9 @@ import Stats from './Stats';
 import FilterForm from './FiltersForm';
 import connector from '../connectors/searchPage';
 import { PacmanLoader } from 'react-spinners';
+import Notification from 'grommet/components/Notification';
 
-const SearchPage = ({ isLoading, userEvents }) => (
+const SearchPage = ({ isLoading, userEvents, error }) => (
     <Box align="center">
         <SearchForm />
         {
@@ -19,7 +20,12 @@ const SearchPage = ({ isLoading, userEvents }) => (
                 [
                     <FilterForm key="filter-form" />,
                     <Stats key="stats" />
-                ] : "Type your Github username to fetch the stats"
+                ] : error ? 
+                <Notification
+                    message="Error"
+                    state={error}
+                    status="critical"
+                /> : "Type your Github username to fetch the stats"
         }
     </Box>
 );

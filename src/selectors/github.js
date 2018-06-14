@@ -7,9 +7,11 @@ import moment from 'moment';
 
 const getIsRequesting = key => get(["github", key, "isRequesting"]);
 const getResponse = key => get(["github", key, "response"]);
+const getError = key =>  get(["github", key, "error"]);
 
 export const userEventsResponse = getResponse("userEvents");
 export const userEventsIsRequesting = getIsRequesting("userEvents");
+export const userEventsError = compose(get(["body", "message"]), getError("userEvents"));
 export const userEventsFiltered = state => {
     const uE = userEventsResponse(state) || [];
     const userEvents = dh.toArray(uE);

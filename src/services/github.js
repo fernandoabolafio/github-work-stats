@@ -15,7 +15,10 @@ export const getUserEvents = (username) => {
         Promise.all(promisses).then((responses) => {
             const data = [].concat.apply([],responses.map(r => r.body));
             resolve(data);
-        })
+        }).catch(err => {
+            console.log(err);
+            reject(err);
+        });
     })
 }
     
