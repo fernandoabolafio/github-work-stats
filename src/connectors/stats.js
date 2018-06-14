@@ -4,7 +4,7 @@ import * as sel from '../selectors';
 
 export default connect(
     sel.selectorMap({
-        userEvents: sel.userEventsAggregateByType
+        userEvents: sel.userEventsFilteredAggregateByType
     }),
     dispatch => bindActionCreators({
     }, dispatch)

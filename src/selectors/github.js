@@ -17,24 +17,33 @@ export const userEventsFiltered = state => {
     const userEvents = dh.toArray(uE);
     const orgFilters = app.orgFilters(state);
     const repoFilters = app.repoFilters(state);
+    const typeFilters = app.typeFilters(state);
     const dateFilter = app.dateFilters(state);
 
+    const activeTypeFilters = Object.keys(typeFilters).filter(key => typeFilters[key]);
     const activeOrgFilters = Object.keys(orgFilters).filter(key => orgFilters[key]);
     const activeRepoFilters = Object.keys(repoFilters).filter(key => repoFilters[key]);
 
     const filterByOrg = dh.createBasicFilter(["org", "login"], activeOrgFilters);
     const filterByRepo = dh.createBasicFilter(["repo", "name"], activeRepoFilters);
+    const filterByType = dh.createBasicFilter(["type"], activeTypeFilters);
     const filterByDate = dh.createCustomFilter(ev =>  
         moment(ev.created_at).isBefore(dateFilter.endDate) && 
         moment(ev.created_at).isAfter(dateFilter.startDate),
         dateFilter.startDate && dateFilter.endDate
     );
-    const filters = dh.applyFilters([filterByOrg, filterByRepo, filterByDate]);
+    const filters = dh.applyFilters([filterByOrg, filterByRepo, filterByType, filterByDate]);
     const data = filters(userEvents);
     return data;
 }
-export const userEventsAggregateByType = state =>
+export const userEventsFilteredAggregateByType = state =>
     dh.resumeAggregateWithItems(dh.aggregateBy("type")(userEventsFiltered(state)));
+
+export const userEventsAggregateByType = state => {
+    const userEvents = userEventsResponse(state) || [];
+    const data = dh.resumeAggregate(dh.aggregateByDeepKey(["type"])(dh.toArray(userEvents)));
+    return data;
+}
 
 export const userEventsAggregateByOrg = state => {
     const userEvents = userEventsResponse(state) || [];

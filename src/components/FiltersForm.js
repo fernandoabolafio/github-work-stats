@@ -48,6 +48,22 @@ class FiltersForm extends React.Component {
             </Columns>
         </Box>
     )
+    renderEventTypeFilter = () => (
+        <Box>
+            <Label size="small" margin="small">Events:</Label>
+            <Columns>
+                {this.props.userEventsByType.map(usEv =>
+                    <Box>
+                        <CheckBox
+                            label={usEv.name}
+                            checked={this.props.typeFilters[usEv.name]}
+                            onChange={() => this.props.toggleTypeFilter(usEv.name)}
+                        />
+                    </Box>
+                )}
+            </Columns>
+        </Box>
+    )
     renderDatePickerFilter = () => {
         const { dateFilters: { startDate, endDate }, setDateFilter } = this.props;
         const minDate = new Moment().subtract(90, 'days');
@@ -81,6 +97,7 @@ class FiltersForm extends React.Component {
                 <Label>Filters:</Label>
                 {this.renderOrgsFilter()}
                 {this.renderRepoFilter()}
+                {this.renderEventTypeFilter()}
                 {this.renderDatePickerFilter()}
             </Box>
         );

@@ -17,7 +17,7 @@ const exportToCsv = (data, fields) => {
 
 export const exportData = () => 
     (dispatch, getState) => {
-        const events = sel.userEventsAggregateByType(getState())
+        const events = sel.userEventsFilteredAggregateByType(getState())
         const data = [].concat.apply([], Object.keys(events).map(type => events[type].items));
     
         const fields = ['type', 'date', 'title', 'url', 'merged', 'closed'];
